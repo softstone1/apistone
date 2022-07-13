@@ -1,13 +1,13 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: api
+  name: apistone
 spec:
   selector:
     matchLabels:
       app: onestone
       tier: api
-  replicas: 1
+  replicas: {{ .Values.replicas }}
   template:
     metadata:
       labels:
@@ -15,7 +15,11 @@ spec:
         tier: api
     spec:
       containers:
-      - name: aspcore-api
+      - name: apistone
         image: docker.io/softstone1/apistone:v1.0.0
+        resources:
+          requests:
+            cpu: 100m
+            memory: 500Mi
         ports:
         - containerPort: 80
