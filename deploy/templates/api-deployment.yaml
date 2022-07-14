@@ -5,17 +5,17 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: onestone
+      app: {{ .Values.appName }}
       tier: api
   replicas: {{ .Values.replicas }}
   template:
     metadata:
       labels:
-        app: onestone
+        app: {{ .Values.appName }}
         tier: api
     spec:
       containers:
-      - name: apistone
+      - name: {{ .Values.serviceName }}
         image: docker.io/softstone1/apistone:v1.0.0
         resources:
           requests:
